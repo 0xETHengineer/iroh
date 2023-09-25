@@ -6,7 +6,7 @@ use std::{
     time::{Duration, Instant},
 };
 
-use crate::config::{IrohPaths, NodeConfig};
+use iroh::config::{IrohPaths, NodeConfig};
 
 use anyhow::Context;
 use clap::Subcommand;

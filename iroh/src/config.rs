@@ -9,8 +9,8 @@ use std::{
 };
 
 use anyhow::{anyhow, bail, Context, Result};
+use super::node::GcPolicy;
 use config::{Environment, File, Value};
-use iroh::node::GcPolicy;
 use iroh_net::{
     defaults::{default_eu_derp_region, default_na_derp_region},
     derp::{DerpMap, DerpRegion},

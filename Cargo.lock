@@ -196,9 +196,9 @@ dependencies = [
 
 [[package]]
 name = "atomic-waker"
-version = "1.1.1"
+version = "1.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1181e1e0d1fce796a03db1ae795d67167da795f9cf4a39c37589e85ef57f26d3"
+checksum = "1505bd5d3d116872e7271a6d4e16d81d0c8570876c8de68093a09ac269d8aac0"
 
 [[package]]
 name = "attohttpc"
@@ -246,8 +246,8 @@ dependencies = [
 
 [[package]]
 name = "bao-tree"
-version = "0.7.0"
-source = "git+https://github.com/Arqu/bao-tree?branch=main#b9f6b7edb08e757f6a6986ab1f51703921e42a6c"
+version = "0.8.0-rc1"
+source = "git+https://github.com/Arqu/bao-tree?branch=main#bafce0608cd6c4c10b918f1a11ff142e19efc1ef"
 dependencies = [
  "blake3",
  "bytes",
@@ -1334,9 +1334,9 @@ checksum = "4443176a9f2c162692bd3d352d745ef9413eec5782a80d8fd6f8a1ac692a07f7"
 
 [[package]]
 name = "fastrand"
-version = "2.0.0"
+version = "2.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6999dc1837253364c2ebb0704ba97994bd874e8f195d665c50b7548f6ea92764"
+checksum = "25cbce373ec4653f1a01a31e8a5e5ec0c622dc27ff9c4e6606eefef5cbbed4a5"
 
 [[package]]
 name = "fd-lock"
@@ -2010,6 +2010,7 @@ dependencies = [
  "hex",
  "http-body",
  "iroh-io",
+ "iroh-metrics",
  "iroh-test",
  "multibase",
  "num_cpus",
@@ -2080,6 +2081,7 @@ dependencies = [
 name = "iroh-metrics"
 version = "0.6.0-alpha.1"
 dependencies = [
+ "anyhow",
  "erased_set",
  "hyper",
  "once_cell",
@@ -4395,7 +4397,7 @@ dependencies = [
  "proc-macro2",
  "quote",
  "rustversion",
- "syn 2.0.29",
+ "syn 2.0.37",
 ]
 
 [[package]]

@@ -25,7 +25,7 @@ use quic_rpc::{transport::quinn::QuinnServerEndpoint, ServiceEndpoint};
 use tokio::io::AsyncWriteExt;
 use tracing::{info_span, Instrument};
 
-use crate::config::IrohPaths;
+use iroh::config::IrohPaths;
 
 use super::{
     add::{aggregate_add_response, print_add_response},

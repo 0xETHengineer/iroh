@@ -7,6 +7,7 @@ pub use iroh_sync as sync;
 
 pub mod baomap;
 pub mod client;
+#[path="config.rs"]
 pub mod config;
 #[cfg(feature = "iroh-collection")]
 pub mod collection;

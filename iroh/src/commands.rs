@@ -20,7 +20,7 @@ use iroh_net::{
 };
 
 use crate::commands::sync::fmt_short;
-use crate::config::{ConsoleEnv, NodeConfig};
+use iroh::config::{ConsoleEnv, NodeConfig};
 
 use self::provide::{ProvideOptions, ProviderRpcPort};
 use self::sync::{AuthorCommands, DocCommands};
