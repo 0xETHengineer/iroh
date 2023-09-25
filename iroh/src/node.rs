@@ -174,7 +174,7 @@ impl CustomGetHandler for NoopCustomGetHandler {
 
 impl<D: Map, S: DocStore> Builder<D, S> {
     /// Creates a new builder for [`Node`] using the given database.
-    fn with_db_and_store(db: D, docs: S) -> Self {
+    pub fn with_db_and_store(db: D, docs: S) -> Self {
         Self {
             bind_addr: DEFAULT_BIND_ADDR.into(),
             secret_key: SecretKey::generate(),

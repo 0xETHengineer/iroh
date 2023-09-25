@@ -83,9 +83,12 @@ impl IrohPaths {
     }
 }
 
+/// todo docs
 #[derive(Debug, Clone, Copy)]
 pub enum ConsolePaths {
+    /// todo docs
     DefaultAuthor,
+    /// todo docs
     History,
 }
 
@@ -122,13 +125,16 @@ impl AsRef<Path> for ConsolePaths {
 }
 
 impl ConsolePaths {
+    /// todo docs
     pub fn with_root(self, root: impl AsRef<Path>) -> PathBuf {
         PathBuf::from(root.as_ref()).join(self)
     }
+    /// todo docs
     pub fn with_env(self) -> Result<PathBuf> {
         Self::ensure_env_dir()?;
         Ok(self.with_root(IrohPaths::Console.with_env()?))
     }
+    /// todo docs
     pub fn ensure_env_dir() -> Result<()> {
         let p = IrohPaths::Console.with_env()?;
         match std::fs::metadata(&p) {
