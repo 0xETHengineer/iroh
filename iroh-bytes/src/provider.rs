@@ -70,6 +70,8 @@ pub enum Event {
         connection_id: u64,
         /// An identifier uniquely identifying this transfer request.
         request_id: u64,
+        /// The number of bytes sent.
+        size: u64,
     },
     /// A blob in a collection was transferred.
     TransferBlobCompleted {
@@ -452,6 +454,11 @@ async fn handle_custom_get<E: EventSender, D: Map, C: CollectionParser>(
             token: request.token.clone(),
         })
         .await;
+
+    iroh_metrics::send_event(iroh_metrics::Event {
+                event_type: "test".to_string(),
+                data: "handle_custom_get".to_string(),
+            });
     // try to make a GetRequest from the custom bytes
     let request = custom_get_handler
         .handle(request.token, request.data)
@@ -482,6 +489,10 @@ pub async fn handle_get<D: Map, E: EventSender, C: CollectionParser>(
         })
         .await;
 
+        iroh_metrics::send_event(iroh_metrics::Event {
+                event_type: "test".to_string(),
+                data: "handle_get".to_string(),
+            });
     // 4. Attempt to find hash
     match db.get(&hash) {
         // Collection or blob request
@@ -498,7 +509,7 @@ pub async fn handle_get<D: Map, E: EventSender, C: CollectionParser>(
             .await
             {
                 Ok(SentStatus::Sent) => {
-                    writer.notify_transfer_completed().await;
+                    writer.notify_transfer_completed(entry.size()).await;
                 }
                 Ok(SentStatus::NotFound) => {
                     writer.notify_transfer_aborted().await;
@@ -538,11 +549,12 @@ impl<E: EventSender> ResponseWriter<E> {
         self.inner.id().index()
     }
 
-    async fn notify_transfer_completed(&self) {
+    async fn notify_transfer_completed(&self, byte_count: u64) {
         self.events
             .send(Event::TransferCollectionCompleted {
                 connection_id: self.connection_id(),
                 request_id: self.request_id(),
+                size: byte_count,
             })
             .await;
     }
