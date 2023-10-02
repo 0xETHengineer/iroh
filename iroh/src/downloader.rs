@@ -43,7 +43,7 @@ use iroh_bytes::{
 use iroh_net::{key::PublicKey, MagicEndpoint};
 use tokio::sync::{mpsc, oneshot};
 use tokio_util::{sync::CancellationToken, time::delay_queue};
-use tracing::{debug, trace};
+use tracing::{debug, trace, warn};
 
 mod get;
 mod invariants;
@@ -878,7 +878,7 @@ impl<G: Getter<Connection = D::Connection>, D: Dialer> Service<G, D> {
                     let next_peer = self.get_best_candidate(kind.hash());
                     self.schedule_request(kind, remaining_retries, next_peer, intents);
                 } else {
-                    debug!(%peer, ?kind, %reason, "download failed");
+                    warn!(%peer, ?kind, %reason, "download failed");
                     for sender in intents.into_values() {
                         let _ = sender.send(Err(anyhow::anyhow!("download ran out of attempts")));
                     }
